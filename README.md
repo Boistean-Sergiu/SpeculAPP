@@ -1,0 +1,2 @@
+# SpeculAPP
+Proiect Tehnologii Web
