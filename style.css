@@ -138,23 +138,82 @@ header{
 {
     position: relative;
 }
-fieldset
+
+#UserMenu
 {
-    padding: 1em;
+    display: block;
+    width: 40%;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    top: 50%;
+    right: -10%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 1em 2em 2em 2em;
+    border: 1px solid gray;
 }
 
-fieldset label
+fieldset#Valute
+{
+    display: block;
+    width: 20%;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    top: 50%;
+    left: 15%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding-bottom: 2em;
+}
+
+fieldset#Schimb
+{
+    background: rgba(0, 0, 0, 0.9);
+    width: 50% !important;
+}
+
+.Administrator label,#Valute label
 {
     position: absolute;
 }
 
-fieldset input[type="text"]
+#Schimb label{
+    position: absolute;
+}
+
+#Schimb input[type="text"]
+{
+    margin-left: 6em;
+    margin-bottom: 1em;
+}
+
+#Schimb select
+{
+    margin-left: 20em;
+    margin-bottom: 1em;
+}
+
+.Administrator input[type="text"],#Valute input[type="text"]
 {
     margin-left: 14.8em;
     margin-bottom: 1em;
 }
 
-fieldset input[type="submit"]
+#Schimb input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 1.5em;
+    background: rgb(179, 48, 48);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    border-radius: 20px;
+    margin-left: 20em;
+}
+
+.Administrator input[type="submit"],#Valute input[type="submit"]
 {
     border: none;
     outline: none;
