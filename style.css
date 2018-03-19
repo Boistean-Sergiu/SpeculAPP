@@ -172,3 +172,53 @@ fieldset input[type="submit"]:hover
     background: #cea426;
     color:#000;
 }
+
+#imagini
+{
+    display: inline-block;
+}
+
+header input[type="image"]
+{
+    width: 2em;
+    height: 2em;
+    margin-right: 1em;
+}
+
+header input[type="submit"]
+{
+    display: inline-block;
+    position: absolute;
+    right: 1em;
+    top: 0.8em;
+    border: none;
+    outline: none;
+    height: 1.5em;
+    background: rgb(179, 48, 48);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+header input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #cea426;
+    color:#000;
+}
+
+footer
+{
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    padding: 0.5em 0.5em 0.5em ;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: serif;
+    bottom: 0;
+}
