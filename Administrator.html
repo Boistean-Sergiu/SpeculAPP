@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <header>
+        <div>Administrator</div>
+    </header>
+    <div class = "divMare">
+        <div class = "impartire">
+            <fieldset>
+            <legend>Monezi</legend>
+            <p>Valute disponibile: </p>
+                <input type="checkbox" name="moneda" value="Dolar"> Dolar
+                <input type="checkbox" name="moneda" value="Euro" checked> Euro
+                <input type="checkbox" name="moneda" value="Lira" > Lira
+                <input type="checkbox" name="moneda" value="Yen" > Yen
+                <input type="submit" value="Aplica">
+            </fieldset>
+        </div>
+        <div class = "impartire">
+            <fieldset>
+                <legend>Perioada</legend>
+                <label for="txtDurataValuta">Durata unei valute:</label><input type="text" name = "durata" placeholder="Ex: 30">
+                <input type="submit" value="Aplica">
+            </fieldset>
+        </div>
+        <div class = "impartire">
+            <fieldset>
+                <legend>Bani</legend>
+                    <label for="txtBaniiInitiali"> Banii initiali a jucatorilor: </label><input type="text" name = "baniiInitiali" placeholder="Ex: 30"><br>
+                    <label for="txtPragCastig">Prag pentru a castiga:</label><input type="text" name = "pragCastig" placeholder="Ex: 30"><br>
+                    <label for="txtPragPierdut">Prag pentru a pierde:</label><input type="text" name = "pragPierdut" placeholder="Ex: 30">
+                    <input type="submit" value="Aplica">
+            </fieldset>
+        </div>
+        <div class = "impartire">
+            <fieldset>
+                <legend>Marjele pentru valuta</legend>
+                    <label for="txtMarjaMax">Marja Minima: </label><input type="text" name = "marjaMinima" placeholder="Ex: 4.10"><br>
+                    <label for="txtMarjaMin">Marja Maxima: </label><input type="text" name = "marjaMaxima" placeholder="Ex: 6.10">
+                    <input type="submit" value="Aplica">
+            </fieldset>
+        </div>
+    </div>
+</body>
+</html>
