@@ -95,6 +95,7 @@ header.Administrator{
     font-weight: bold;
     font-size: 1.5em;
     font-family: serif;
+    width: 100%;
 }
 
 #UserHeader
@@ -188,13 +189,12 @@ fieldset#Valute
 fieldset#Schimb
 {
     background: rgba(0, 0, 0, 0.9);
-    width: 50% !important;
 }
 
 fieldset#InfoUser
 {
     background: rgba(0, 0, 0, 0.9);
-    height: 7em;;
+    height: 7em;
 }
 
 fieldset#InfoUser label
@@ -243,7 +243,6 @@ fieldset#InfoUser label
     color: rgb(255, 255, 255);
     font-size: 18px;
     border-radius: 20px;
-    margin-left: 20em;
 }
 
 #Update input[type="submit"]
@@ -255,7 +254,6 @@ fieldset#InfoUser label
     color: rgb(255, 255, 255);
     font-size: 18px;
     border-radius: 20px;
-    margin-left: 20em;
     margin-top: 0.5em;
 }
 
@@ -341,4 +339,191 @@ footer
     font-size: 1.5em;
     font-family: serif;
     bottom: 0;
+}
+
+@media only screen and (max-width: 1052px)
+{
+    header{
+        display: block;
+    }
+
+    #Schimb input[type="text"]
+    {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #Schimb label
+    {
+        position: relative;
+    }
+
+    #Schimb select
+    {
+        margin-left: 0;
+    }
+
+    #Valute label
+    {
+        position: relative;
+    }
+
+    .Administrator label
+    {
+        position: relative;
+    }
+
+    .Administrator input[type="text"]
+    {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    header
+    {
+        width: 100%;
+    }
+
+    .divMare
+    {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        width: 75%;
+        margin-top: 30%;
+        margin-bottom: 10%;
+    }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 800px)
+{
+    #UserMenu
+    {
+        margin-top: 25%;
+    }
+
+    footer{
+        bottom: -25%;
+    }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 399px)
+{
+    #UserMenu
+    {
+        margin-top: 70%;
+    }
+
+    .Administrator label
+    {
+        position: relative;
+    }
+
+    .Administrator input[type="text"]
+    {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    header
+    {
+        width: 100%;
+    }
+
+    .divMare
+    {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        width: 75%;
+        margin-top: 30%;
+        margin-bottom: 10%;
+    }
+
+    footer{
+        bottom: -58%;
+    }
+
+    #valute{
+        margin-top: 100%;
+    }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 499px)
+{
+    .divMare{
+        margin-top: 10%;
+    }
+
+    #UserMenu{
+        margin-top: 50%;
+    }
+
+    footer{
+        bottom: -35%;
+    }
+}
+
+@media only screen and (max-width: 699px) and (min-width: 600px)
+{
+    #UserMenu
+    {
+        margin-top: 45% !important;
+    }
+
+    #Valute{
+        margin-top: 30%;
+    }
+
+    footer{
+        bottom: -120% !important;
+    }
+    
+    .divMare{
+        margin-top: 35% !important;
+    }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 799px)
+{
+    .divMare{
+        margin-top: 0;
+    }
+}
+
+@media only screen and (orientation: landscape)
+{
+    #UserMenu
+    {
+        margin-top: 30%;
+    }
+
+    #Valute{
+        margin-top: 30%;
+    }
+
+    footer{
+        bottom: -100%;
+    }
+
+    .divMare{
+        margin-top: 30%;
+    }
+
+    .login-register{
+        margin-top: 20%;
+        margin-bottom: 10%;
+    }
+}
+
+@media only screen and (min-width: 1000px) and (orientation: portrait)
+{
+    .divMare{
+        margin-top: 5% !important;
+    }
+}
+
+@media only screen and (min-width: 1000px) and (orientation: landscape)
+{
+    .divMare{
+        margin-top: 5% !important;
+    }
 }
