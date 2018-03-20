@@ -478,7 +478,7 @@ footer
     }
     
     .divMare{
-        margin-top: 35% !important;
+        margin-top: 3% !important;
     }
 }
 
@@ -489,7 +489,7 @@ footer
     }
 }
 
-@media only screen and (orientation: landscape)
+@media only screen and (orientation: landscape) and (max-width:900px)
 {
     #UserMenu
     {
