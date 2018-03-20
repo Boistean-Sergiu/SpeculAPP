@@ -420,6 +420,8 @@ footer
         position: relative;
     }
 
+
+    
     .Administrator input[type="text"]
     {
         width: 100%;
@@ -441,7 +443,7 @@ footer
     }
 
     footer{
-        bottom: -20%;
+        bottom: -40%;
     }
 
     #valute{
