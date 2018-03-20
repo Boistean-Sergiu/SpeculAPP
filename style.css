@@ -406,6 +406,48 @@ footer
     }
 }
 
+@media only screen and (min-width: 100px) and (max-width: 299px)
+{
+    #UserMenu
+    {
+        width: 50%;
+        margin-top: 70%;
+    }
+
+    .Administrator label
+    {
+        position: relative;
+    }
+
+    .Administrator input[type="text"]
+    {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    header
+    {
+        width: 100%;
+    }
+
+    .divMare
+    {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        width: 75%;
+        margin-top: 30%;
+        margin-bottom: 10%;
+    }
+
+    footer{
+        bottom: -20%;
+    }
+
+    #valute{
+        margin-top: 100%;
+    }
+}
+
 @media only screen and (min-width: 300px) and (max-width: 399px)
 {
     #UserMenu
