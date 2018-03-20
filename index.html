@@ -9,11 +9,16 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <header>
+    <header id="UserHeader">
         <div id = "imagini">
            <input type="image" src="html5.png" alt="Submit">
            <input type="image" src="json.png" alt="Submit">
            <input type="image" src="pdf.png" alt="Submit">
+        </div>
+        <div id="Informatii">
+            <p>Valoare totala a user-ului este: 1763 RON</p>
+            <p>Pragul pentru a pierde este: 400 RON</p>
+            <p>Pragul pentru a castiga este: 2000 RON</p>
         </div>
         <a href="Login.html"><input type="submit" value="Log Out"></a>
     </header>
@@ -26,28 +31,14 @@
         <label for="txtValutaLira">Lira: 0,89</label>
     </fieldset>
     <div id="UserMenu">
-        <p>Valoare totala a user-ului este: 1763 RON</p>
-        <p>Pragul pentru a pierde este: 400 RON</p>
-        <p>Pragul pentru a castiga este: 2000 RON</p>
-        <!-- <form id="Schimbare"> 
-            <p>Cantitate:</p>
-            <input type="text">
-            <p>Moneda din care doriti sa schimbati:</p>
-            <select>
-                <option value="Euro">Euro</option>
-                <option value="Dolar">Dolar</option>
-                <option value="Yen">Yen</option>
-                <option value="Lira">Lira</option>
-            </select>
-            <p>Moneda in care doriti sa schimbati:</p>
-            <select>
-                <option value="Euro">Euro</option>
-                <option value="Dolar">Dolar</option>
-                <option value="Yen">Yen</option>
-                <option value="Lira">Lira</option>
-            </select>
-            <input type="button" value="Schimba">
-        </form> -->
+        <fieldset id="InfoUser">
+            <legend>Informatii jucator</legend>
+            <label for="txtCantitateRon">Ron: 1200</label><br>
+            <label for="txtCantitateEuro">Euro: 220</label><br>
+            <label for="txtCantitateDolar">Dolar: 59</label><br>
+            <label for="txtCantitateYen">Yen: 1200</label><br>
+            <label for="txtCantitateLira">Lira: 10</label>
+        </fieldset>
         <fieldset id="Schimb">
             <legend>Schimb</legend>
             <label>Cantitate:</label>
@@ -68,6 +59,18 @@
             </select><br>
             <input type="submit" value="Schimba">
         </fieldset>
+        <fieldset id = "Update">
+            <legend>Update</legend>
+            <label for="txtMonedaCeruta">Selectati moneda pentru care vreti sa stiti valuta:</label>
+            <select>
+                <option value="Euro">Euro</option>
+                <option value="Dolar">Dolar</option>
+                <option value="Yen">Yen</option>
+                <option value="Lira">Lira</option>
+            </select><br>
+            <input type="submit" value="Update">
+        </fieldset>
+        <input type="submit" value="Finish" id = "ButonFinal">
     </div>
     <footer>
         Aici va fi lista RSS, ca la stiri.

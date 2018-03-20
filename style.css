@@ -85,7 +85,7 @@ h1{
     color: yellow;
 }
 
-header{
+header.Administrator{
     background: rgba(0, 0, 0, 0.6);
     color: #fff;
     display: block;
@@ -95,6 +95,23 @@ header{
     font-weight: bold;
     font-size: 1.5em;
     font-family: serif;
+}
+
+#UserHeader
+{
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: block;
+    box-sizing: border-box;
+    padding: 0.5em 0.5em;
+    font-weight: bold;
+}
+
+#Informatii,#Informatii p
+{
+    display: inline-block;
+    padding-bottom: -0.5em;
+    margin-left: 1.5em;
 }
 
 .divMare{
@@ -150,7 +167,7 @@ header{
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
-    padding: 1em 2em 2em 2em;
+    padding: 1em 2em 2.5em 2em;
     border: 1px solid gray;
 }
 
@@ -174,6 +191,17 @@ fieldset#Schimb
     width: 50% !important;
 }
 
+fieldset#InfoUser
+{
+    background: rgba(0, 0, 0, 0.9);
+    height: 7em;;
+}
+
+fieldset#InfoUser label
+{
+    position: absolute;
+}
+
 .Administrator label,#Valute label
 {
     position: absolute;
@@ -195,6 +223,11 @@ fieldset#Schimb
     margin-bottom: 1em;
 }
 
+#Update
+{
+    background: rgba(0, 0, 0, 0.9);
+}
+
 .Administrator input[type="text"],#Valute input[type="text"]
 {
     margin-left: 14.8em;
@@ -211,6 +244,19 @@ fieldset#Schimb
     font-size: 18px;
     border-radius: 20px;
     margin-left: 20em;
+}
+
+#Update input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 1.5em;
+    background: rgb(179, 48, 48);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    border-radius: 20px;
+    margin-left: 20em;
+    margin-top: 0.5em;
 }
 
 .Administrator input[type="submit"],#Valute input[type="submit"]
@@ -242,6 +288,21 @@ header input[type="image"]
     width: 2em;
     height: 2em;
     margin-right: 1em;
+}
+
+#ButonFinal
+{
+    display: inline-block;
+    position: absolute;
+    margin-top: 0.3em;
+    left: 50%;
+    border: none;
+    outline: none;
+    height: 1.5em;
+    background: rgb(179, 48, 48);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    border-radius: 20px;
 }
 
 header input[type="submit"]
