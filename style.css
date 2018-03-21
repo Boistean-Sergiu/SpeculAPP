@@ -394,8 +394,6 @@ footer
     }
 }
 
-/*Easer egg*/
-
 @media only screen and (min-width: 700px) and (max-width: 800px)
 {
     #UserMenu
@@ -408,13 +406,62 @@ footer
     }
 }
 
+@media only screen and (min-width: 100px) and (max-width: 299px)
+{
+
+    #UserMenu
+    {
+        width: 50%;
+        margin-top: 70%;
+    }
+
+    .Administrator label
+    {
+        position: relative;
+    }
+
+
+    
+    .Administrator input[type="text"]
+    {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    header
+    {
+        width: 100%;
+    }
+
+    .divMare
+    {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        width: 75%;
+        margin-top: 30% !important;
+        margin-bottom: 10%;
+    }
+
+    footer{
+        bottom: -40%;
+    }
+
+    #valute{
+        margin-top: 100%;
+    }
+}
+
 @media only screen and (min-width: 300px) and (max-width: 399px)
 {
     #UserMenu
     {
-        margin-top: 70%;
+        margin-top: 100% !important;
     }
 
+    #Valute
+    {
+        margin-top: 60% !important;
+    }
     .Administrator label
     {
         position: relative;
@@ -449,7 +496,7 @@ footer
     }
 }
 
-@media only screen and (min-width: 400px) and (max-width: 499px)
+@media only screen and (min-width: 450px) and (max-width: 499px)
 {
     .divMare{
         margin-top: 10%;
@@ -461,6 +508,45 @@ footer
 
     footer{
         bottom: -35%;
+    }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 449px)
+{
+    .divMare{
+        margin-top: 30%;
+    }
+
+    #UserMenu{
+        margin-top: 50%;
+    }
+
+    footer{
+        bottom: -35%;
+    }
+}
+
+@media only screen and (max-width: 599px) and (min-width: 500px)
+{
+    .divMare{
+        margin-top: 0;
+    }
+
+    #UserMenu
+    {
+        margin-top: 45% !important;
+    }
+
+    #Valute{
+        margin-top: 30%;
+    }
+
+    footer{
+        bottom: -120% !important;
+    }
+    
+    .divMare{
+        margin-top: 3% !important;
     }
 }
 
@@ -480,7 +566,7 @@ footer
     }
     
     .divMare{
-        margin-top: 35% !important;
+        margin-top: 3% !important;
     }
 }
 
@@ -491,7 +577,7 @@ footer
     }
 }
 
-@media only screen and (orientation: landscape)
+@media only screen and (orientation: landscape) and (max-width:900px)
 {
     #UserMenu
     {
