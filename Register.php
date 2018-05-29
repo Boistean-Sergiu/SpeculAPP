@@ -1,6 +1,8 @@
 <?php
     ob_start();
     session_start();
+    error_reporting(0);
+    ini_set('display_errors', 0);
 ?>
 <?php
     $msg = '';
@@ -32,7 +34,7 @@
             $_SESSION['valid'] = true;
             $_SESSION['timeout'] = time();
             $_SESSION['username'] = $userNam;
-            header("Location: game.html",true,301);
+            header("Location: game.php",true,301);
             exit();
         }
         else
@@ -43,7 +45,7 @@
     }
     else
     {
-        $msg = "Weird mistake";
+        $msg = "Not all data was inserted";
     }}
 ?>
 <html>

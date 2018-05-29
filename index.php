@@ -31,7 +31,7 @@
             $_SESSION['valid'] = true;
             $_SESSION['timeout'] = time();
             $_SESSION['username'] = $userNam;
-            header("Location: game.html",true,301);
+            header("Location: game.php",true,301);
             exit();
         }
     }
@@ -59,7 +59,7 @@
                 <p>Password</p>
                 <input type="password" name="password" placeholder="Enter Password" required>
                 <input type="submit" value="submit">
-                <a href="Register.html">Don't have an account?</a> 
+                <a href="Register.php">Don't have an account?</a> 
             </form>  
     </div>
 </body>
