@@ -15,106 +15,100 @@
             $cookie_name = "player";
             $cookie_value = $_SESSION['username'];
             setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
-            // $username = 'TW';
-            // $password = 'tw';
-            // $connection_string = 'localhost/xe';
-            // $connection = oci_connect($username,$password,$connection_string);
+            $username = 'tw';
+            $password = 'TW';
+            $connection_string = 'localhost/xe';
+            $connection = oci_connect($username,$password,$connection_string);
 
-            // $Query = sprintf("Select banii_initiali from joc");
-            // $res = oci_parse($connection,$Query);
-            // oci_execute($res);
-            // $resulting = oci_fetch_array($res,OCI_BOTH);
-            // $totalUserValue = $resulting[0];
-            // oci_close($connection);
-            // setcookie("TotValue",$totalUserValue, time() + (3600), "/");
-            // setcookie("Ron", $totalUserValue, time() + (3600), "/");
-            // setcookie("Dolar", 0, time() + (3600), "/");
-            // setcookie("Yen", 0, time() + (3600), "/");
-            // setcookie("Euro", 0, time() + (3600), "/");
-            // setcookie("Lira", 0, time() + (3600), "/");
+            $Query = sprintf("Select banii_initiali from joc");
+            $res = oci_parse($connection,$Query);
+            oci_execute($res);
+            $resulting = oci_fetch_array($res,OCI_BOTH);
+            $totalUserValue = $resulting[0];
+            setcookie("TotValue",$totalUserValue, time() + (3600), "/");
+            setcookie("Ron", $totalUserValue, time() + (3600), "/");
+            setcookie("Dolar", 0, time() + (3600), "/");
+            setcookie("Yen", 0, time() + (3600), "/");
+            setcookie("Euro", 0, time() + (3600), "/");
+            setcookie("Lira", 0, time() + (3600), "/");
+            $Query = sprintf("Select prag_superior,prag_inferior,marja_minima,marja_maxima,durata_unei_valute from joc");
+            $res = oci_parse($connection,$Query);
+            oci_execute($res);
+            $resulting = oci_fetch_array($res,OCI_BOTH);
+            $_SESSION['minValue'] = $resulting[1];
+            $_SESSION['minWinValue'] = $resulting[0];
+            $_SESSION['minMarja'] = $resulting[2];
+            $_SESSION['maxMarja'] = $resulting[3];
+            $_SESSION['valueDurationS'] = $resulting[4];
+            $minMarja = $_SESSION['minMarja'];
+            $maxMarja = $_SESSION['maxMarja']; 
+            $DolarExchange = array("Dolar" => 1,"Yen"=> frand($minMarja,$maxMarja), "Euro" => frand($minMarja,$maxMarja), "Lira" => frand($minMarja,$maxMarja),"Ron" => frand($minMarja,$maxMarja));
+            $yenExchange = array("Dolar" => frand($minMarja,$maxMarja),"Yen"=> 1 , "Euro" => frand($minMarja,$maxMarja), "Lira" => frand($minMarja,$maxMarja),"Ron" => frand($minMarja,$maxMarja));
+            $euroExchange = array("Dolar" => frand($minMarja,$maxMarja), "Yen" => frand($minMarja,$maxMarja), "Euro" => 1, "Lira" => frand($minMarja,$maxMarja), "Ron" => frand($minMarja,$maxMarja));
+            $liraExchange = array("Dolar" => frand($minMarja,$maxMarja), "Yen" => frand($minMarja,$maxMarja), "Euro" => frand($minMarja,$maxMarja),"Lira" => 1, "Ron" => frand($minMarja,$maxMarja));
+            $ronExchange = array("Dolar" => frand($minMarja,$maxMarja), "Yen" => frand($minMarja,$maxMarja), "Euro" => frand($minMarja,$maxMarja), "Lira" => frand($minMarja,$maxMarja), "Ron"=> 1);
+            $_SESSION['DolarExchange'] = $DolarExchange;
+            $_SESSION['YenExchange'] = $yenExchange;
+            $_SESSION['EuroExchange'] = $euroExchange;
+            $_SESSION['LiraExchange'] = $liraExchange;
+            $_SESSION['RonExchange'] = $ronExchange;
+            oci_close($connection);
+            $totalUserValue = $totalUserValue;
+            $RonUser = $totalUserValue;
+            $DolarUser = 0;
+            $YenUser = 0;
+            $LiraUser = 0;
+            $EuroUser = 0;
+            $DolarExchange = $_SESSION["DolarExchange"];
+            $yenExchange = $_SESSION["YenExchange"];
+            $euroExchange = $_SESSION["EuroExchange"];
+            $liraExchange = $_SESSION["LiraExchange"];
+            $ronExchange =$_SESSION["RonExchange"];
+            $msgSchimbErr = '';
+            $msgSchimbAff = '';
+            $msgUpdateErr = '';
+            $msgUpdateAff = '';
+            $msgFinishErr = '';
+            $msgFinishAff = '';
+            $_SESSION['updateValute'] = '/';
+            $_SESSION['updateRon']  ='/';
+            $_SESSION['updateEuro'] = '/';
+            $_SESSION['updateDolar'] = '/';
+            $_SESSION['updateYen'] = '/';
+            $_SESSION['updateLira'] = '/';
+            $valuteList = array("Dolar" => $DolarExchange,"Yen" => $yenExchange,"Euro" => $euroExchange,"Lira" => $liraExchange,"Ron" => $ronExchange);        
+        }
+        else
+        {
+            $totalUserValue = $_COOKIE["TotValue"];
+            $RonUser = $_COOKIE["Ron"];
+            $DolarUser = $_COOKIE["Dolar"];
+            $YenUser = $_COOKIE["Yen"];
+            $LiraUser = $_COOKIE["Lira"];
+            $EuroUser = $_COOKIE["Euro"];
+            $DolarExchange = $_SESSION["DolarExchange"];
+            $yenExchange = $_SESSION["YenExchange"];
+            $euroExchange = $_SESSION["EuroExchange"];
+            $liraExchange = $_SESSION["LiraExchange"];
+            $ronExchange =$_SESSION["RonExchange"];
+            $msgSchimbErr = '';
+            $msgSchimbAff = '';
+            $msgUpdateErr = '';
+            $msgUpdateAff = '';
+            $msgFinishErr = '';
+            $msgFinishAff = '';
+            $valuteList = array("Dolar" => $DolarExchange,"Yen" => $yenExchange,"Euro" => $euroExchange,"Lira" => $liraExchange,"Ron" => $ronExchange);
         }
     }
- ?>
-<?php
-    $player = $_SESSION['username'];
-    if ( !isset($_COOKIE["TotValue"]))
-    {
-        $username = 'TW';
-        $password = 'tw';
-        $connection_string = 'localhost/xe';
-        $connection = oci_connect($username,$password,$connection_string);
-
-        $Query = sprintf("Select banii_initiali from joc");
-        $res = oci_parse($connection,$Query);
-        oci_execute($res);
-        $resulting = oci_fetch_array($res,OCI_BOTH);
-        $totalUserValue = $resulting[0];
-        oci_close($connection);
-        setcookie("TotValue",$totalUserValue, time() + (3600), "/");
-        setcookie("Ron", $totalUserValue, time() + (3600), "/");
-        setcookie("Dolar", 0, time() + (3600), "/");
-        setcookie("Yen", 0, time() + (3600), "/");
-        setcookie("Euro", 0, time() + (3600), "/");
-        setcookie("Lira", 0, time() + (3600), "/");
-        $Query = sprintf("Select prag_superior,prag_inferior,marja_minima,marja_maxima from joc");
-        $res = oci_parse($connection,$Query);
-        oci_execute($res);
-        $resulting = oci_fetch_array($res,OCI_BOTH);
-        $minValue = $resulting[1];
-        $minWinValue = $resulting[0];
-        $minMarja = $resulting[2];
-        $maxMarja = $resulting[3];
-
-        oci_close($connection);
-        $DolarExchange = array("Yen"=> rand($minMarja,$maxMarja), "Euro" => rand($minMarja,$maxMarja), "Lira" => rand($minMarja,$maxMarja),"Ron" => rand($minMarja,$maxMarja));
-        $yenExchange = array("Dolar" => rand($minMarja,$maxMarja), "Euro" => rand($minMarja,$maxMarja), "Lira" => rand($minMarja,$maxMarja),"Ron" => rand($minMarja,$maxMarja));
-        $euroExchange = array("Dolar" => rand($minMarja,$maxMarja), "Yen" => rand($minMarja,$maxMarja), "Lira" => rand($minMarja,$maxMarja), "Ron" => rand($minMarja,$maxMarja));
-        $liraExchange = array("Dolar" => rand($minMarja,$maxMarja), "Yen" => rand($minMarja,$maxMarja), "Euro" => rand($minMarja,$maxMarja), "Ron" => rand($minMarja,$maxMarja));
-        $ronExchange = array("Dolar" => rand($minMarja,$maxMarja), "Yen" => rand($minMarja,$maxMarja), "Euro" => rand($minMarja,$maxMarja), "Lira" => rand($minMarja,$maxMarja));
-        $_SESSION['DolarExchange'] = $DolarExchange;
-        $_SESSION['YenExchange'] = $yenExchange;
-        $_SESSION['EuroExchange'] = $euroExchange;
-        $_SESSION['LiraExchange'] = $liraExchange;
-        $_SESSION['RonExchange'] = $ronExchange;
+    function frand($min, $max) {
+      $scale = pow(10, 2);
+      return mt_rand($min * $scale, $max * $scale) / $scale;
     }
-
-    $username = 'TW';
-    $password = 'tw';
-    $connection_string = 'localhost/xe';
-    $connection = oci_connect($username,$password,$connection_string);
-    
-    $Query = sprintf("Select prag_superior,prag_inferior,marja_minima,marja_maxima from joc");
-    $res = oci_parse($connection,$Query);
-    oci_execute($res);
-    $resulting = oci_fetch_array($res,OCI_BOTH);
-    $minValue = $resulting[1];
-    $minWinValue = $resulting[0];
-    $minMarja = $resulting[2];
-    $maxMarja = $resulting[3];
-
-    oci_close($connection);
-
+            
+    $player = $_SESSION['username'];
     $cookie_name = "player";
     $cookie_value = $_SESSION['username'];
     setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
-    $totalUserValue = $_COOKIE["TotValue"];
-    $RonUser = $_COOKIE["Ron"];
-    $DolarUser = $_COOKIE["Dolar"];
-    $YenUser = $_COOKIE["Yen"];
-    $LiraUser = $_COOKIE["Lira"];
-    $EuroUser = $_COOKIE["Euro"];
-    $DolarExchange = $_SESSION["DolarExchange"];
-    $yenExchange = $_SESSION["YenExchange"];
-    $euroExchange = $_SESSION["EuroExchange"];
-    $liraExchange = $_SESSION["LiraExchange"];
-    $ronExchange =$_SESSION["RonExchange"];
-    $msgSchimbErr = '';
-    $msgSchimbAff = '';
-    $msgUpdateErr = '';
-    $msgUpdateAff = '';
-    $msgFinishErr = '';
-    $msgFinishAff = '';
-    $valuteList = array("Dolar" => $DolarExchange,"Yen" => $yenExchange,"Euro" => $euroExchange,"Lira" => $liraExchange,"Ron" => $ronExchange);
     function schimbPosibil($n,$originalMoney,$ron,$dolar,$yen,$lira,$euro)
     {
         switch($originalMoney)
@@ -152,13 +146,13 @@
         }
         return true;
     }
-    $quantityToExchange = $_POST['quantity'];
-    $originalMoney = $_POST['moneyToChange'];
-    $newMoney = $_POST['moneyToGet'];
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         if ( $_REQUEST["Aplica"] == "Schimba" )
         {
+            $quantityToExchange = $_POST['quantity'];
+            $originalMoney = $_POST['moneyToChange'];
+            $newMoney = $_POST['moneyToGet'];
             if ( $quantityToExchange != null )
             {
                 if ( $originalMoney == $newMoney )
@@ -215,7 +209,7 @@
                         switch ( $newMoney )
                         {
                             case "Dolar":
-                                $DolarUser = $DolarUser + $valuteList[$newMoney][$originalMoney]*$quantityToExchange;
+                                $DolarUser = $DolarUser + $valuteList[$originalMoney][$newMoney]*$quantityToExchange;
                                 setcookie("Dolar", $DolarUser, time() + (3600), "/");
                                 setcookie("Ron", $RonUser, time() + (3600), "/");
                                 setcookie("Yen", $YenUser, time() + (3600), "/");
@@ -224,7 +218,7 @@
                                 $msgSchimbAff = "Efectuat! \n";
                                 break;
                             case "Yen":
-                                $YenUser = $YenUser + $valuteList[$newMoney][$originalMoney]*$quantityToExchange;
+                                $YenUser = $YenUser + $valuteList[$originalMoney][$newMoney]*$quantityToExchange;
                                 setcookie("Dolar", $DolarUser, time() + (3600), "/");
                                 setcookie("Ron", $RonUser, time() + (3600), "/");
                                 setcookie("Yen", $YenUser, time() + (3600), "/");
@@ -233,7 +227,7 @@
                                 $msgSchimbAff = "Efectuat! \n";
                                 break;
                             case "Euro":
-                                $EuroUser = $EuroUser + $valuteList[$newMoney][$originalMoney]*$quantityToExchange;
+                                $EuroUser = $EuroUser + $valuteList[$originalMoney][$newMoney]*$quantityToExchange;
                                 setcookie("Dolar", $DolarUser, time() + (3600), "/");
                                 setcookie("Ron", $RonUser, time() + (3600), "/");
                                 setcookie("Yen", $YenUser, time() + (3600), "/");
@@ -242,7 +236,7 @@
                                 $msgSchimbAff = "Efectuat! \n";
                                 break;
                             case "Lira":
-                                $LiraUser = $LiraUser + $valuteList[$newMoney][$originalMoney]*$quantityToExchange;
+                                $LiraUser = $LiraUser + $valuteList[$originalMoney][$newMoney]*$quantityToExchange;
                                 setcookie("Dolar", $DolarUser, time() + (3600), "/");
                                 setcookie("Ron", $RonUser, time() + (3600), "/");
                                 setcookie("Yen", $YenUser, time() + (3600), "/");
@@ -251,7 +245,7 @@
                                 $msgSchimbAff = "Efectuat! \n";
                                 break;
                             case "Ron":
-                                $RonUser = $RonUser + $valuteList[$newMoney][$originalMoney]*$quantityToExchange;
+                                $RonUser = $RonUser + $valuteList[$originalMoney][$newMoney]*$quantityToExchange;
                                 setcookie("Dolar", $DolarUser, time() + (3600), "/");
                                 setcookie("Ron", $RonUser, time() + (3600), "/");
                                 setcookie("Yen", $YenUser, time() + (3600), "/");
@@ -260,12 +254,16 @@
                                 $msgSchimbAff = "Efectuat! \n";
                                 break;
                         }
-                        $totalUserValue = $totalUserValue + $RonUser + $valuteList["Ron"]["Dolar"]*$DolarUser + $valuteList["Ron"]["Euro"]*$EuroUser + $valuteList["Ron"]["Lira"]*$LiraUser + $valuteList["Ron"]["Yen"]*$YenUser;
+                        $totalUserValue = $RonUser + $valuteList["Dolar"]["Ron"]*$DolarUser + $valuteList["Euro"]["Ron"]*$EuroUser + $valuteList["Lira"]["Ron"]*$LiraUser + $valuteList["Yen"]["Ron"]*$YenUser;
                         setcookie("TotValue",$totalUserValue, time() + (3600), "/");
-                        if ( $totalUserValue < $minValue )
+                        if ( $totalUserValue < $_SESSION['minValue'] )
                         {
                             $message = "You Lost!";
                             echo "<script type='text/javascript'>alert('$message');</script>";
+                            if (isset($_COOKIE['player'])){
+                                unset($_COOKIE['player']);
+                                setcookie('player', '', time() - 3600, '/'); // empty value and old timestamp
+                            }
                             if (isset($_COOKIE['Dolar'])) {
                                 unset($_COOKIE['Dolar']);
                                 setcookie('Dolar', '', time() - 3600, '/'); // empty value and old timestamp
@@ -310,51 +308,62 @@
                 $msgSchimbErr = "Lipsa cantitate!\n";
             }
         }
-        if ( $_REQUEST["Aplica"] == "Update" )
+        if ( $_REQUEST['Aplica'] == "Update" )
         {
+            $select = $_POST['knowValue'];
+            $_SESSION['updateValute'] = $_POST['knowValue'] ;
+            $_SESSION['updateRon']  = $valuteList[$select]['Ron'];
+            $_SESSION['updateEuro'] = $valuteList[$select]['Euro'];
+            $_SESSION['updateDolar'] = $valuteList[$select]['Dolar'];
+            $_SESSION['updateYen'] = $valuteList[$select]['Yen'];
+            $_SESSION['updateLira'] = $valuteList[$select]['Lira'];
         }
         if ( $_REQUEST["Aplica"] == "Log Out" )
         {
-            // if (isset($_COOKIE['Dolar'])) {
-            //     unset($_COOKIE['Dolar']);
-            //     setcookie('Dolar', '', time() - 3600, '/'); // empty value and old timestamp
-            // }
-            // if (isset($_COOKIE['Ron'])) {
-            //     unset($_COOKIE['Ron']);
-            //     setcookie('Ron', '', time() - 3600, '/'); // empty value and old timestamp
-            // }
-            // if (isset($_COOKIE['Lira'])) {
-            //     unset($_COOKIE['Lira']);
-            //     setcookie('Lira', '', time() - 3600, '/'); // empty value and old timestamp
-            // }
-            // if (isset($_COOKIE['Euro'])) {
-            //     unset($_COOKIE['Euro']);
-            //     setcookie('Euro', '', time() - 3600, '/'); // empty value and old timestamp
-            // }
-            // if (isset($_COOKIE['player'])) {
-            //     unset($_COOKIE['player']);
-            //     setcookie('player', '', time() - 3600, '/'); // empty value and old timestamp
-            // }
-            // if (isset($_COOKIE['Yen'])) {
-            //     unset($_COOKIE['Yen']);
-            //     setcookie('Yen', '', time() - 3600, '/'); // empty value and old timestamp
-            // }
-            // if (isset($_COOKIE['TotValue'])) {
-            //     unset($_COOKIE['TotValue']);
-            //     setcookie('TotValue', '', time() - 3600, '/'); // empty value and old timestamp
-            // }
+            if (isset($_COOKIE['player'])) {
+                unset($_COOKIE['player']);
+                setcookie('player','',time() - 3600, '/');
+            }
+            if (isset($_COOKIE['Dolar'])) {
+                unset($_COOKIE['Dolar']);
+                setcookie('Dolar', '', time() - 3600, '/'); // empty value and old timestamp
+            }
+            if (isset($_COOKIE['Ron'])) {
+                unset($_COOKIE['Ron']);
+                setcookie('Ron', '', time() - 3600, '/'); // empty value and old timestamp
+            }
+            if (isset($_COOKIE['Lira'])) {
+                unset($_COOKIE['Lira']);
+                setcookie('Lira', '', time() - 3600, '/'); // empty value and old timestamp
+            }
+            if (isset($_COOKIE['Euro'])) {
+                unset($_COOKIE['Euro']);
+                setcookie('Euro', '', time() - 3600, '/'); // empty value and old timestamp
+            }
+            if (isset($_COOKIE['player'])) {
+                unset($_COOKIE['player']);
+                setcookie('player', '', time() - 3600, '/'); // empty value and old timestamp
+            }
+            if (isset($_COOKIE['Yen'])) {
+                unset($_COOKIE['Yen']);
+                setcookie('Yen', '', time() - 3600, '/'); // empty value and old timestamp
+            }
+            if (isset($_COOKIE['TotValue'])) {
+                unset($_COOKIE['TotValue']);
+                setcookie('TotValue', '', time() - 3600, '/'); // empty value and old timestamp
+            }
             session_destroy();
             header("Location: index.php",true,301);
             exit();
         }
         if ( $_REQUEST["Aplica"] == "Finish" )
         {
-            if ( $totalUserValue > $minWinValue )
+            if ( $totalUserValue >= $_SESSION['minWinValue'] )
             {
                 $message = "You Won!";
                 echo "<script type='text/javascript'>alert('$message');</script>";
-                $username = 'TW';
-                $password = 'tw';
+                $username = 'tw';
+                $password = 'TW';
                 $connection_string = 'localhost/xe';
                 $connection = oci_connect($username,$password,$connection_string);
                 
@@ -375,37 +384,51 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My Website</title>
+    <title>SpeculAPP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <script src = "script.js"></script>
+    <script>
+        function butoane() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200) {
+                    document.getElementById("imagini").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET","userGameinfo.txt",true);
+            xhttp.send();
+        }
+    </script>
 </head>
 <body>
     <header id="UserHeader">
         <div id = "imagini">
-           <input type="image" src="html5.png" alt="Submit">
-           <input type="image" src="json.png" alt="Submit">
-           <input type="image" src="pdf.png" alt="Submit">
+            <div id="Export">
+               <input type="submit" onclick="butoane()" value =  "Export Highscores">
+           </div>
         </div>
         <div id="Informatii">
             <p>Valoare totala a user-ului este: <?php echo $totalUserValue ?> RON</p>
-            <p>Pragul pentru a pierde este: <?php echo $minValue ?> RON</p>
-            <p>Pragul pentru a castiga este: <?php echo $minWinValue ?> RON</p>
+            <p>Pragul pentru a pierde este: <?php echo $_SESSION['minValue'] ?> RON</p>
+            <p>Pragul pentru a castiga este: <?php echo $_SESSION['minWinValue'] ?> RON</p>
         </div>
+        
         <form method = "post">
-        <a href="index.html"><input type="submit" value="Log Out" name ="Aplica"></a>
+            <a href="index.html"><input type="submit" value="Log Out" name ="Aplica"></a>
         </form>
     </header>
     <fieldset id="Valute">
         <legend>Valuta</legend>
-        <label for="txtInformatiiCerute">Moneda cautata: Euro</label><br>
-        <label for="txtValutaEuro">Euro: 1</label><br>
-        <label for="txtValutaDolar">Dolar: 1.12</label><br>
-        <label for="txtValutaYen">Yen: 510</label><br>
-        <label for="txtValutaLira">Lira: 0,89</label>
+        <label for="txtInformatiiCerute">Moneda cautata: <?php echo $_SESSION['updateValute'] ?></span></label><br>
+        <label for="txtValutaRon">Ron: <?php echo $_SESSION['updateRon'] ?></label><br>
+        <label for="txtValutaEuro">Euro: <?php echo $_SESSION['updateEuro'] ?></label><br>
+        <label for="txtValutaDolar">Dolar: <?php echo $_SESSION['updateDolar'] ?> </label><br>
+        <label for="txtValutaYen">Yen: <?php echo $_SESSION['updateYen'] ?> </label><br>
+        <label for="txtValutaLira">Lira: <?php echo $_SESSION['updateLira'] ?> </label>
     </fieldset>
-    <form method = "post">
-        <div id="UserMenu">
+    
+    <div id="UserMenu">
+        <form method = "post">
             <fieldset id="InfoUser">
                 <legend>Informatii jucator</legend>
                 <label for="txtCantitateRon">Ron: <?php echo $RonUser ?></label><br>
@@ -443,20 +466,20 @@
                 <div style="font-size:small; color:red;"><?php echo $msgUpdateErr ?></div>
                 <div style="font-size:small; color:green;"><?php echo $msgUpdateAff ?></div>
                 <label for="txtMonedaCeruta">Selectati moneda pentru care vreti sa stiti valuta:</label>
-                <select>
+                <select id="knowValue" name ="knowValue">
+                    <option value="Ron">Ron</option>
                     <option value="Euro">Euro</option>
                     <option value="Dolar">Dolar</option>
                     <option value="Yen">Yen</option>
                     <option value="Lira">Lira</option>
-                </select><br>
-                <div style="font-size:small; color:red;"><?php echo $msgUpdateErr ?></div>
-                <input type="submit" value="Update">
+                </selec><br>
+                <input type="submit" name="Aplica" value="Update">
             </fieldset>
             <input type="submit" value="Finish" id = "ButonFinal" name = "Aplica">
-        </div>
-    </form>
-    <!-- <footer>
+        </form>
+    </div>
+    <footer>
         Aici va fi lista RSS, ca la stiri.
-    </footer> -->
+    </footer>
 </body>
 </html>
