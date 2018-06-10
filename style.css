@@ -340,6 +340,7 @@ header input[type="submit"]:hover
 footer
 {
     position: absolute;
+    text-align: center;
     background: rgba(0, 0, 0, 0.6);
     color: #fff;
     width: 100%;
@@ -347,8 +348,7 @@ footer
     box-sizing: border-box;
     padding: 0.5em 0.5em 0.5em ;
     font-style: italic;
-    font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1rem;
     font-family: serif;
     bottom: 0;
 }
